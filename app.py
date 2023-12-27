@@ -13,6 +13,7 @@ db_config = {
     'database': 'users'
 }
 
+
 def authenticate_user(username, password):
     try:
         connection = mysql.connector.connect(**db_config)
@@ -37,9 +38,11 @@ def authenticate_user(username, password):
             cursor.close()
             connection.close()
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -51,5 +54,6 @@ def login():
     else:
         return 'Invalid credentials.'
 
+
 if __name__ == '__main__':
-    app.run(debug=True, port=8000, host='0.0.0.0')
+    app.run(host="127.0.0.1", port=8080, debug=True)
