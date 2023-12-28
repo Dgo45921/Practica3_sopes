@@ -1,0 +1,17 @@
+services:
+  flask:
+    build: ./flask/
+    command: sh -c "sleep 5s;gunicorn --workers=4 --bind 0.0.0.0:8080 app:app"
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mysql
+
+  mysql:
+    build: ./sql/
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'users'
+      MYSQL_ROOT_PASSWORD: 'imbilelou'
+    ports:
+      - '7777:3306'

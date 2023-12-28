@@ -7,10 +7,11 @@ CORS(app)
 
 # Replace these with your MySQL database credentials
 db_config = {
-    'host': '34.170.111.220',
+    'host': 'mysql',
     'user': 'root',
     'password': 'imbilelou',
-    'database': 'users'
+    'database': 'users',
+    'port': '3306'
 }
 
 
@@ -20,7 +21,7 @@ def authenticate_user(username, password):
         cursor = connection.cursor(dictionary=True)
 
         # Query to check if the username and password match
-        query = "SELECT * FROM credentials WHERE username = %s AND password = %s"
+        query = "SELECT * FROM users WHERE username = %s AND password = %s"
         cursor.execute(query, (username, password))
         user = cursor.fetchone()
 
@@ -56,4 +57,4 @@ def login():
 
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
