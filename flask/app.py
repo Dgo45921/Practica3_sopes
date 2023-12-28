@@ -5,7 +5,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Replace these with your MySQL database credentials
 db_config = {
     'host': 'mysql',
     'user': 'root',
@@ -51,9 +50,9 @@ def login():
     password = request.form['password']
 
     if authenticate_user(username, password):
-        return 'Login successful!'
+        return render_template("home.html")
     else:
-        return 'Invalid credentials.'
+        return render_template("not_found.html")
 
 
 if __name__ == '__main__':
