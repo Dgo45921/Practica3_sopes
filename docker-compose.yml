@@ -11,7 +11,7 @@ services:
     build: ./sql/
     restart: always
     environment:
-      MYSQL_DATABASE: 'users'
+      MYSQL_DATABASE: 'dhuite202003585db'
       MYSQL_ROOT_PASSWORD: 'imbilelou'
     ports:
       - '7777:3306'

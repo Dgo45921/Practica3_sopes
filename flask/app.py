@@ -9,7 +9,7 @@ db_config = {
     'host': 'mysql',
     'user': 'root',
     'password': 'imbilelou',
-    'database': 'users',
+    'database': 'dhuite202003585db',
     'port': '3306'
 }
 
@@ -20,7 +20,7 @@ def authenticate_user(username, password):
         cursor = connection.cursor(dictionary=True)
 
         # Query to check if the username and password match
-        query = "SELECT * FROM users WHERE username = %s AND password = %s"
+        query = "SELECT * FROM dhuite202003585users WHERE username = %s AND password = %s"
         cursor.execute(query, (username, password))
         user = cursor.fetchone()
 
