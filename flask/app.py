@@ -20,7 +20,7 @@ def authenticate_user(username, password):
         cursor = connection.cursor(dictionary=True)
 
         # Query to check if the username and password match
-        query = "SELECT * FROM users WHERE username = %s AND password = %s"
+        query = "SELECT * FROM dhuite202003585users WHERE username = %s AND password = %s"
         cursor.execute(query, (username, password))
         user = cursor.fetchone()
 
@@ -45,7 +45,7 @@ def update_password(username, new_password):
         cursor = connection.cursor()
 
         # Query to update the user's password
-        query = "UPDATE users SET password = %s WHERE username = %s"
+        query = "UPDATE dhuite202003585users SET password = %s WHERE username = %s"
         cursor.execute(query, (new_password, username))
         connection.commit()
 
@@ -72,14 +72,14 @@ def create_user(username, password):
         cursor = connection.cursor()
 
         # Check if the username already exists
-        cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
+        cursor.execute("SELECT * FROM dhuite202003585users WHERE username = %s", (username,))
         existing_user = cursor.fetchone()
 
         if existing_user:
             return False, "Username already exists"
 
         # Insert the new user into the database
-        cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+        cursor.execute("INSERT INTO dhuite202003585users (username, password) VALUES (%s, %s)", (username, password))
         connection.commit()
 
         return True, "User created successfully"
@@ -140,7 +140,7 @@ def get_all_usernames():
         cursor = connection.cursor()
 
         # Query to retrieve all usernames
-        cursor.execute("SELECT username FROM users")
+        cursor.execute("SELECT username FROM dhuite202003585users")
         usernames = [row[0] for row in cursor.fetchall()]
 
         return usernames
