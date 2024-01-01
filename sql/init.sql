@@ -1,3 +1,5 @@
+CREATE DATABASE dhuite202003585db;
+
 USE dhuite202003585db;
 
 # Create 'dhuite202003585users' table

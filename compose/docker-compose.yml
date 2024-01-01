@@ -1,19 +1,19 @@
 services:
-  flask:
+  flask-final:
     build: ../flask
-    command: sh -c "sleep 5s;gunicorn --workers=4 --bind 0.0.0.0:8080 app:app"
-    image: flask-sopes:latest
+    # command: sh -c "sleep 5s;gunicorn --workers=4 --bind 0.0.0.0:8080 app:app"
+    image: flask-final:latest
     ports:
       - '8080:8080'
     depends_on:
-      - mysql
+      - mysql-final
 
-  mysql:
+  mysql-final:
     build: ../sql
     restart: always
-    image: mysql:latest
-    environment:
-      MYSQL_DATABASE: 'dhuite202003585db'
-      MYSQL_ROOT_PASSWORD: 'imbilelou'
+    image: mysql-final:latest
+#    environment:
+#      MYSQL_DATABASE: 'dhuite202003585db'
+#      MYSQL_ROOT_PASSWORD: 'imbilelou'
     ports:
       - '7777:3306'
