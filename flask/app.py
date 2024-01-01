@@ -6,9 +6,9 @@ app = Flask(__name__)
 CORS(app)
 
 db_config = {
-    'host': 'mysql',
+    'host': 'mysql-service',
     'user': 'root',
-    'password': 'imbilelou',
+    'password': 'root',
     'database': 'dhuite202003585db',
     'port': '3306'
 }
