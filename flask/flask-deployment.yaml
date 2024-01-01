@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  labels:
+    app: flask-final
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-final
+  template:
+    metadata:
+      labels:
+        app: flask-final
+    spec:
+      containers:
+      - name: flask-final
+        image: dgo45921/flask-final
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FLASK_ENV
+          value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+  labels:
+    app: flask-final
+spec:
+  selector:
+    app: flask-final
+  ports:
+  - name: http
+    protocol: TCP
+    port: 30000 # minikube port
+    targetPort: 8080 #container port
+  type: NodePort
