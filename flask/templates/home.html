@@ -34,6 +34,17 @@
         <div class="jumbotron">
             <h1 class="display-4">¡Bienvenido!</h1>
             <p class="lead">Este es un sitio web para confirmar que tus credenciales están bien</p>
+
+            {% if all_usernames %}
+                <h2>Usuarios Actuales:</h2>
+                <ul>
+                    {% for username in all_usernames %}
+                        <li>{{ username }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No hay usuarios actualmente.</p>
+            {% endif %}
         </div>
     </div>
 
