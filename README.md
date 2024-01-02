@@ -4,7 +4,7 @@
 
 ##### Diego Andres Huite Alvarez - 202003585
 
-[**Link video**](https://drive.google.com/file/d/1zBsUxqzqQf_zX5i7OuE_P7WuGF3T7KcZ/view?usp=sharing)
+[**Link video**](https://drive.google.com/file/d/1az6EI36DoJgl8lzXij4j-JU60b4Jbpfu/view?usp=sharing)
 
 ## Arquitectura inicial de la aplicación en k8s:
 
