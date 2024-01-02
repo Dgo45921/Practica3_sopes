@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
       - name: flask-final
-        image: dgo45921/flask-final:final
+        image: dgo45921/flask-final:finale
         ports:
         - containerPort: 8080
         env:

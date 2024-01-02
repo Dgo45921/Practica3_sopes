@@ -13,6 +13,15 @@ db_config = {
     'port': '3306'
 }
 
+# db_config = {
+#     'host': 'localhost',
+#     'user': 'root',
+#     'password': 'imbilelou',
+#     'database': 'users',
+#     'port': '3306'
+# }
+
+
 
 def authenticate_user(username, password):
     try:
@@ -165,6 +174,45 @@ def login():
         return render_template("home.html", all_usernames=all_usernames)
     else:
         return render_template("not_found.html")
+
+
+@app.route('/delete-user', methods=['GET', 'POST'])
+def delete_user_route():
+    if request.method == 'GET':
+        return render_template('delete_user.html')
+
+    elif request.method == 'POST':
+        username_to_delete = request.form['username']
+        password = request.form['password']
+        if authenticate_user(username_to_delete, password):
+            success, message = delete_user(username_to_delete)
+
+            if success:
+                return render_template('index.html', message='User deleted successfully :)')
+            else:
+                return render_template('error.html', message=message)
+        else:
+            return render_template('error.html', message="User not found :(")
+
+def delete_user(username):
+    try:
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor()
+
+        # Query to delete the user from the database
+        cursor.execute("DELETE FROM dhuite202003585users WHERE username = %s", (username,))
+        connection.commit()
+
+        return True, "User deleted successfully"
+
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return False, "Error deleting user"
+
+    finally:
+        if 'connection' in locals() and connection.is_connected():
+            cursor.close()
+            connection.close()
 
 
 if __name__ == '__main__':
